@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import { fetchDetail } from "../../api";
 import css from "./MovieDetailsPage.module.css";
 
@@ -25,8 +25,6 @@ export default function MoviesPage() {
     };
     fetchDetailMovie();
   }, [movieId]);
-  console.log(movieId);
-  console.log(detail);
 
   return (
     <div>
@@ -56,6 +54,13 @@ export default function MoviesPage() {
           </ul>
         </div>
       </div>
+      <p>Additional information</p>
+      <div className={css.link}>
+        <NavLink to="cast">Cast</NavLink>
+        <NavLink to="reviews">Reviews</NavLink>
+      </div>
+
+      <Outlet />
     </div>
   );
 }

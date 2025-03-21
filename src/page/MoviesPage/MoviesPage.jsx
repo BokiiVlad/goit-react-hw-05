@@ -23,6 +23,9 @@ export default function MoviesPage() {
   useEffect(() => {
     if (!query.trim()) return;
 
+    // if (filterFilm.length === 0) {
+    //   <p>Movies not found</p>;
+    // }
     const loadQueryFilm = async () => {
       try {
         setError(false);
@@ -55,7 +58,6 @@ export default function MoviesPage() {
       </div>
       {error && <p>An error occurred, please reload the page.</p>}
       {isLoading && <p>Please wait, loading is in progress.</p>}
-      {filterFilm.length === 0 && <p>Movies not found</p>}
       <MovieList film={filterFilm} />
     </>
   );

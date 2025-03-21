@@ -24,3 +24,13 @@ export const fetchDetail = async (id) => {
 }
 
 
+export const fetchReviews = async (id) => {
+    const detail = await axios.get(`https://api.themoviedb.org/3/movie/${id}/reviews`, options)
+    return detail.data.results;
+}
+export const fetchCast = async (id) => {
+    const detail = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits`, options)
+    const cast = detail.data.cast.slice(0, 8);
+    return cast;
+}
+
