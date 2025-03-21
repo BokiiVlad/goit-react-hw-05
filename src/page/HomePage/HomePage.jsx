@@ -25,6 +25,7 @@ export default function HomePage() {
     loadFilm();
   }, []);
 
+  console.log(film);
   return (
     <>
       {error && <p>An error occurred, please reload the page.</p>}

@@ -19,8 +19,8 @@ export const fetchQueryFilms = async (queryValue) => {
 
 
 export const fetchDetail = async (id) => {
-    const detail = axios.get(`https://api.themoviedb.org/3/movie/${id}`, options)
-    return detail.data
+    const detail = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, options)
+    return detail.data;
 }
 
 

@@ -1,0 +1,18 @@
+.list {
+  padding: 0;
+  list-style: none;
+}
+.detailField {
+  margin-left: 30px;
+  text-align: left;
+}
+.imgDetails {
+  margin-top: 30px;
+  display: flex;
+}
+.poster {
+  width: 250px;
+}
+.nameSection {
+  font-weight: 600;
+}
