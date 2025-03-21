@@ -1,0 +1,18 @@
+.inputQuery {
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 4px 10px;
+  height: 42px;
+  border: 1px inset black;
+}
+.inputField {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+.queryBtn {
+  border: 1px inset black;
+}
+.queryBtn:hover {
+  background-color: rgb(137, 181, 231);
+}

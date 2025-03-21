@@ -1,0 +1,5 @@
+.navField {
+  display: flex;
+  text-align: left;
+  gap: 20px;
+}
