@@ -8,12 +8,12 @@ const options = {
 };
 
 export const fetchFilms = async () => {
-    const apiFilm = await axios.get("https://api.themoviedb.org/3/trending/movie/week", options)
+    const apiFilm = await axios.get("https://api.themoviedb.org/3/trending/movie/week?language=en-US", options)
     return apiFilm.data.results;
 }
 
 export const fetchQueryFilms = async (queryValue) => {
-    const apiFilm = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${queryValue}`, options)
+    const apiFilm = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${queryValue}&language=en-US`, options)
     return apiFilm.data.results;
 }
 

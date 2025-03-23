@@ -63,7 +63,7 @@ export default function MoviesPage() {
       </div>
       {error && <p>An error occurred, please reload the page.</p>}
       {isLoading && <p>Please wait, loading is in progress.</p>}
-      {filterFilm > 0 && <MovieList film={filterFilm} />}
+      <MovieList film={filterFilm} />
     </>
   );
 }

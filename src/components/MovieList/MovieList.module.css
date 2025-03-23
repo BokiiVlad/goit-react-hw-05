@@ -1,6 +1,18 @@
 .filmName {
   text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 .topList {
   list-style: none;
+  max-width: 260px;
+  overflow: hidden;
+}
+.poster {
+}
+.listPoster {
+  padding: 0 21px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
 }
