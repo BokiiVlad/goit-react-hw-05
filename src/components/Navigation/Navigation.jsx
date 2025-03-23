@@ -5,7 +5,7 @@ export default function Navigation() {
   return (
     <div className={css.navField}>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/movies">Movie</NavLink>
+      <NavLink to="/movies">Movies</NavLink>
     </div>
   );
 }

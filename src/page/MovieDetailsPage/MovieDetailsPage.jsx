@@ -1,13 +1,23 @@
-import { useEffect, useState } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { Suspense, useEffect, useRef, useState } from "react";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { fetchDetail } from "../../api";
 import css from "./MovieDetailsPage.module.css";
 
 export default function MoviesPage() {
   const { movieId } = useParams();
-  const [detail, setDetail] = useState([]);
+  const [detail, setDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const location = useLocation();
+
+  const locationRef = useRef(location.state ?? "/movies");
 
   useEffect(() => {
     const fetchDetailMovie = async () => {
@@ -26,11 +36,13 @@ export default function MoviesPage() {
     fetchDetailMovie();
   }, [movieId]);
 
+  if (!detail) return <p>No movie details available.</p>;
+
   return (
     <div>
       {error && <p>An error occurred, please reload the page.</p>}
       {isLoading && <p>Please wait, loading is in progress.</p>}
-      <button>Go back</button>
+      <Link to={locationRef.current}>Go back</Link>
       <div className={css.imgDetails}>
         <div>
           <img
@@ -59,8 +71,9 @@ export default function MoviesPage() {
         <NavLink to="cast">Cast</NavLink>
         <NavLink to="reviews">Reviews</NavLink>
       </div>
-
-      <Outlet />
+      <Suspense fallback={<div>Loading subpage...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }

@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { fetchQueryFilms } from "../../api";
 import MovieList from "../../components/MovieList/MovieList";
 import css from "./MoviesPage.module.css";
+import { useSearchParams } from "react-router-dom";
 
 export default function MoviesPage() {
   const [filterFilm, setFilterFilm] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [query, setQuery] = useState("");
   const [inputValue, setInputValue] = useState("");
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query") ?? "";
 
   const setInputValueForm = (event) => {
     const value = event.target.value;
@@ -16,16 +19,18 @@ export default function MoviesPage() {
   };
 
   const handleClick = () => {
-    setQuery(inputValue);
-    setInputValue("");
+    const newParams = new URLSearchParams(searchParams);
+    if (inputValue.trim() !== "") {
+      newParams.set("query", inputValue);
+    } else {
+      newParams.delete("query");
+    }
+    setSearchParams(newParams);
   };
 
   useEffect(() => {
     if (!query.trim()) return;
 
-    // if (filterFilm.length === 0) {
-    //   <p>Movies not found</p>;
-    // }
     const loadQueryFilm = async () => {
       try {
         setError(false);
@@ -58,7 +63,7 @@ export default function MoviesPage() {
       </div>
       {error && <p>An error occurred, please reload the page.</p>}
       {isLoading && <p>Please wait, loading is in progress.</p>}
-      <MovieList film={filterFilm} />
+      {filterFilm > 0 && <MovieList film={filterFilm} />}
     </>
   );
 }

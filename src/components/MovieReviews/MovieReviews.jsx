@@ -5,7 +5,7 @@ import css from "./MovieReviews.module.css";
 
 export default function MovieReviews() {
   const { movieId } = useParams();
-  const [reviews, setRewiews] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -15,7 +15,7 @@ export default function MovieReviews() {
         setIsLoading(true);
         setError(false);
         const data = await fetchReviews(movieId);
-        setRewiews(data);
+        setReviews(data);
       } catch (error) {
         console.log(error);
         setError(true);
@@ -35,5 +35,11 @@ export default function MovieReviews() {
     </li>
   ));
 
-  return <ul>{reviews.length > 0 ? data : <p>Not found</p>}</ul>;
+  return (
+    <>
+      {error && <p>An error occurred, please reload the page.</p>}
+      {isLoading && <p>Please wait, loading is in progress.</p>}
+      <ul>{reviews.length > 0 ? data : <p>Not found</p>}</ul>
+    </>
+  );
 }
